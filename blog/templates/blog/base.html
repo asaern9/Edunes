@@ -52,15 +52,15 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="active"><a href="{% url 'blog-home' %}">Home</a></li>
-                                    <li><a href="#">Politics</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Entertainment</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                    <li><a href="#">Arts/Culture</a></li>
-                                    <li><a href="#">Health</a></li>
-                                    <li><a href="#">Travel</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{% url 'blog-politics' %}">Politics</a></li>
+                                    <li><a href="{% url 'blog-business' %}">Business</a></li>
+                                    <li><a href="{% url 'blog-technology' %}">Technology</a></li>
+                                    <li><a href="{% url 'blog-entertainment' %}">Entertainment</a></li>
+                                    <li><a href="{% url 'blog-fashion' %}">Fashion</a></li>
+                                    <li><a href="{% url 'blog-arts-culture' %}">Arts/Culture</a></li>
+                                    <li><a href="{% url 'blog-health' %}">Health</a></li>
+                                    <li><a href="#">Society</a></li>
+                                    <li><a href="{% url 'blog-contact' %}">Contact</a></li>
                                     <li><a href="#"><i class="fa fa-search"></i></a></li>
                                 </ul>
                             </div>
@@ -101,7 +101,7 @@
                         <div class="footer-widget-area mt-80">
                             <!-- Footer Logo -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                                <a href="index.html"><img src="{% static 'blog/img/core-img/logo.png' %}" alt=""></a>
                             </div>
                             <!-- List -->
                             <ul class="list">
