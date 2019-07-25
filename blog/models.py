@@ -2,6 +2,12 @@ from django.db import models
 from django.shortcuts import reverse
 # Create your models here.
 CATEGORY_CHOICES = (
+    ('arts', 'Arts/Culture'),
+    ('business', 'Business'),
+    ('entertainment', 'Entertainment'),
+    ('fashion', 'Fashion'),
+    ('health', 'Health'),
+    ('politics', 'Politics'),
     ('sport', 'Sport'),
     ('tech', 'Tech'),
 )
@@ -18,7 +24,7 @@ class News(models.Model):
     audio = models.FileField(upload_to='Audio/', null=True, blank=True)
 
     def get_absolute_url(self):
-        return reverse('blog-single', kwargs={'slug': self.slug})
+        return reverse('blog-news-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.title
+        return self.title + '---------' + self.category
