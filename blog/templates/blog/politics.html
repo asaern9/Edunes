@@ -8,7 +8,7 @@
             <div class="row bg">
                 <div class="col-12 col-lg-7 bg-light">
                     <div class="blog-posts-area">
-                        {% for politics in politics %}
+                        {% for politics in news %}
                         <div class="row mt-3 mb-3">
                         <div class="col-6 col-md-6">
                             <a href="{{ politics.get_absolute_url }}"><img src="{{ politics.picture.url }}" alt=""></a>
@@ -25,17 +25,28 @@
                         </div>
                         {% endfor %}
                     </div>
+                      {% if news.has_other_pages %}
                     <nav aria-label="Page navigation example">
                         <ul class="pagination mt-50">
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">10</a></li>
+                            {% if news.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ news.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                            {% endif %}
+                            {% for i in news.paginator.page_range %}
+                                {% if news.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if news.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ news.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                            {% endif %}
                         </ul>
+                        <p class="text-center">{{ news }}</p>
                     </nav>
+                    {% else %}
+                          <p class="text-center mt-5">{{ news }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="col-12 col-lg-5">
@@ -48,12 +59,12 @@
                             {% for tech in technology %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ tech.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=tech.slug %}"><img src="{{ tech.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Technology</a>
+                                    <a href="{% url 'blog-news-detail' slug=tech.slug %}" class="post-catagory">{{ tech.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=tech.slug %}" class="post-title">
                                             <h6>{{ tech.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ tech.date|date:'g:i A' }}</span> | <span>{{ tech.date|date:'F j' }}</span></p>
@@ -65,12 +76,12 @@
                             {% for bus in business %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ bus.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=bus.slug %}"><img src="{{ bus.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Business</a>
+                                    <a href="{% url 'blog-news-detail' slug=bus.slug %}" class="post-catagory">{{ bus.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=bus.slug %}" class="post-title">
                                             <h6>{{ bus.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ bus.date|date:'g:i A' }}</span> | <span>{{ bus.date|date:'F j' }}</span></p>
@@ -82,12 +93,12 @@
                             {% for heal in health %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ heal.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=heal.slug %}"><img src="{{ heal.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Health</a>
+                                    <a href="{% url 'blog-news-detail' slug=heal.slug %}" class="post-catagory">{{ heal.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=heal.slug %}" class="post-title">
                                             <h6>{{ heal.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ heal.date|date:'g:i A' }}</span> | <span>{{ heal.date|date:'F j' }}</span></p>
@@ -95,17 +106,17 @@
                                 </div>
                             </div>
                             {% endfor %}
-
+                            <!-- Fashion -->
                             {% for fash in fashion %}
                             <!-- Single Featured Post -->
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ fash.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=fash.slug %}"><img src="{{ fash.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Fashion</a>
+                                    <a href="{% url 'blog-news-detail' slug=fash.slug %}" class="post-catagory">{{ fash.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=fash.slug %}" class="post-title">
                                             <h6>{{ fash.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ fash.date|date:'g:i A' }}</span> | <span>{{ fash.date|date:'F j' }}</span></p>
@@ -117,12 +128,12 @@
                             {% for art in arts %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ art.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=art.slug %}"><img src="{{ art.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Arts/Culture</a>
+                                    <a href="{% url 'blog-news-detail' slug=art.slug %}" class="post-catagory">{{ art.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=art.slug %}" class="post-title">
                                             <h6>{{ art.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ art.date|date:'F j' }}</span> | <span>{{ art.date|date:'F j' }}</span></p>
@@ -130,16 +141,16 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <!-- Politics -->
+                            <!-- Entertainment -->
                             {% for enter in entertainment %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{{ enter.picture.url }}" alt=""></a>
+                                    <a href="{% url 'blog-news-detail' slug=enter.slug %}"><img src="{{ enter.picture.url }}" alt=""></a>
                                 </div>
                                 <div class="post-data">
-                                    <a href="#" class="post-catagory">Entertainment</a>
+                                    <a href="{% url 'blog-news-detail' slug=enter.slug %}" class="post-catagory">{{ enter.category.title }}</a>
                                     <div class="post-meta">
-                                        <a href="#" class="post-title">
+                                        <a href="{% url 'blog-news-detail' slug=enter.slug %}" class="post-title">
                                             <h6>{{ enter.title }}</h6>
                                         </a>
                                         <p class="post-date"><span>{{ enter.date|date:'F j' }}</span> | <span>{{ enter.date|date:'F j' }}</span></p>

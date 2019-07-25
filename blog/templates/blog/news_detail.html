@@ -40,9 +40,10 @@
                         </div>
                         <div class="row">
                             <!-- Single Post -->
+                            {%  if  %}
                             {% for relate in related_post %}
                             <div class="col-12 col-md-6">
-                                <div class="single-blog-post style-3 mb-80">
+                                <div class="single-blog-post style-3">
                                     <div class="post-thumb">
                                         <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
                                     </div>
@@ -55,6 +56,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
