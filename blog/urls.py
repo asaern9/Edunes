@@ -2,10 +2,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-from .views import NewsDetail
+from .views import NewsDetail, SearchResultsView
 
 urlpatterns = [
     path('', views.index, name='blog-home'),
+    path('search/', SearchResultsView.as_view(), name='search-result'),
     path('news/<slug>/', NewsDetail.as_view(), name='blog-news-detail'),
 
     path('arts_culture/', views.arts_culture, name='blog-arts-culture'),

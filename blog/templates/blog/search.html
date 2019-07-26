@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        {% if object_list %}
+            {% for object in object_list %}
+            <div class="row mt-1">
+                <div class="col-md-3">
+                    <a href="{% url 'blog-news-detail' slug=object.slug %}"><img src="{{ object.picture.url }}" alt=""></a>
+                </div>
+                <div class="col-md-9">
+                    <a href="{% url 'blog-news-detail' slug=object.slug %}" style="font-size: 30px">{{ object.title }}</a>
+                    <p>{{ object.content|truncatewords:30 }}</p>
+                    <p class="float-right">{{ object.date|date:'j F, Y' }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            {% else %}
+            <div class="jumbotron">
+                <p class="text-center" style="font-size: larger">No results found</p>
+            </div>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        {% endif %}
+    </div>
+{% endblock content %}

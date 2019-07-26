@@ -56,7 +56,7 @@
                         <div class="latest-posts-widget mt-3">
 
                             <!-- Technology -->
-                            a{% for tech in technology %}
+                            {% for tech in technology %}
                             <div class="single-blog-post small-featured-post d-flex">
                                 <div class="post-thumb">
                                     <a href="{% url 'blog-news-detail' slug=tech.slug %}"><img src="{{ tech.picture.url }}" alt=""></a>

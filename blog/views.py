@@ -1,7 +1,8 @@
-from django.shortcuts import render, reverse
-from django.views.generic import DetailView
+from django.shortcuts import render, redirect
+from django.views.generic import DetailView, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import News
+from .forms import ContactForm
 # Create your views here.
 
 
@@ -16,7 +17,6 @@ class NewsDetail(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(NewsDetail, self).get_context_data(*args, **kwargs)
         context['related_post'] = News.objects.filter(category='politics').order_by('-id')[:4]
-        context['related_post_arts'] = News.objects.filter(category='arts').order_by('-id')[:4]
         return context
 
 
@@ -205,4 +205,22 @@ def tech(request):
 
 
 def contact(request):
-    return render(request, 'blog/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form_save = form.save()
+            return redirect('blog-contact')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})
+
+
+class SearchResultsView(ListView):
+    model = News
+    template_name = 'blog/search.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        if query:
+            object_list = News.objects.filter(title__icontains=query).union(News.objects.filter(content__icontains=query))
+            return object_list
