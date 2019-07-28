@@ -1234,3 +1234,9 @@ textarea:focus {
   background: #125688;
   color: white;
 }
+
+.center-div
+{
+     margin: 0 auto;
+     width: 100px;
+}

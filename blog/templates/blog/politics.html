@@ -136,7 +136,7 @@
                                         <a href="{% url 'blog-news-detail' slug=art.slug %}" class="post-title">
                                             <h6>{{ art.title }}</h6>
                                         </a>
-                                        <p class="post-date"><span>{{ art.date|date:'F j' }}</span> | <span>{{ art.date|date:'F j' }}</span></p>
+                                        <p class="post-date"><span>{{ art.date|date:'g:i A' }}</span> | <span>{{ art.date|date:'F j' }}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                                         <a href="{% url 'blog-news-detail' slug=enter.slug %}" class="post-title">
                                             <h6>{{ enter.title }}</h6>
                                         </a>
-                                        <p class="post-date"><span>{{ enter.date|date:'F j' }}</span> | <span>{{ enter.date|date:'F j' }}</span></p>
+                                        <p class="post-date"><span>{{ enter.date|date:'g:i A' }}</span> | <span>{{ enter.date|date:'F j' }}</span></p>
                                     </div>
                                 </div>
                             </div>

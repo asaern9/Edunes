@@ -7,7 +7,24 @@ from .forms import ContactForm
 
 
 def index(request):
-    return render(request, 'blog/index.html')
+    news = News.objects.all().order_by('-id')[:6]
+    arts = News.objects.all().filter(category='arts').order_by('-id')[:1]
+    bus = News.objects.all().filter(category='business').order_by('-id')[:1]
+    bus_2 = News.objects.all().filter(category='business').order_by('-id')
+    enter = News.objects.all().filter(category='entertainment').order_by('-id')[:1]
+    enter_2 = News.objects.all().filter(category='entertainment').order_by('-id')
+    fash = News.objects.all().filter(category='fashion').order_by('-id')[:1]
+    heal = News.objects.all().filter(category='health').order_by('-id')[:1]
+    poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
+    poli_2 = News.objects.all().filter(category='politics')[:2]
+    sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
+    technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
+    technology_2 = News.objects.all().filter(category='tech').order_by('-id')
+
+    context = {'news': news, 'arts': arts, 'politics': poli, 'business': bus, 'entertainment': enter, 'fashion': fash,
+               'health': heal, 'sports': sports, 'technology': technology, 'politics_2': poli_2, 'enter_2': enter_2,
+               'technology_2': technology_2, 'bus_2': bus_2}
+    return render(request, 'blog/index.html', context)
 
 
 class NewsDetail(DetailView):
