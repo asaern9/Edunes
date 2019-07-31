@@ -18,4 +18,7 @@ urlpatterns = [
     path('sports/', views.sport, name='blog-sport'),
     path('technology/', views.tech, name='blog-technology'),
     path('contact/', views.contact, name='blog-contact'),
+
+    # Universities url path
+    path('institutions/university-of-ghaan/', views.university_of_ghana, name='university-of-ghana'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

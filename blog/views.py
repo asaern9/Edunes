@@ -241,3 +241,9 @@ class SearchResultsView(ListView):
         if query:
             object_list = News.objects.filter(title__icontains=query).union(News.objects.filter(content__icontains=query))
             return object_list
+
+
+# Unversities views
+
+def university_of_ghana(request):
+    return render(request, 'blog/university_of_ghana.html')
