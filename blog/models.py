@@ -38,3 +38,12 @@ class Message(models.Model):
 
     def __str__(self):
         return self.name + '--------' + self.subject
+
+
+class FeaturedVideo(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    video_link = models.URLField(max_length=500)
+    video_picture = models.ImageField(upload_to='Videos_Pic/')
+
+    def __str__(self):
+        return self.title

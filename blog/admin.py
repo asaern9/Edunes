@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import News, Message
+from .models import News, Message, FeaturedVideo
 # Register your models here.
 
 
@@ -13,3 +13,4 @@ class MessageAdmin(admin.ModelAdmin):
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(Message, MessageAdmin)
+admin.site.register(FeaturedVideo)

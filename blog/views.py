@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import News
+from .models import News, FeaturedVideo
 from .forms import ContactForm
 # Create your views here.
 
@@ -20,10 +20,10 @@ def index(request):
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
     technology_2 = News.objects.all().filter(category='tech').order_by('-id')
-
+    video_link = FeaturedVideo.objects.all().order_by('-id')[:3]
     context = {'news': news, 'arts': arts, 'politics': poli, 'business': bus, 'entertainment': enter, 'fashion': fash,
                'health': heal, 'sports': sports, 'technology': technology, 'politics_2': poli_2, 'enter_2': enter_2,
-               'technology_2': technology_2, 'bus_2': bus_2}
+               'technology_2': technology_2, 'bus_2': bus_2, 'video_link': video_link}
     return render(request, 'blog/index.html', context)
 
 
