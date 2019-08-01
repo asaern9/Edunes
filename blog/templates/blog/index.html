@@ -1,9 +1,115 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% block navbar %}
+     <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+         <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="{% url 'blog-home' %}"><img src="{% static 'blog/img/core-img/edunes_logo.png' %}" alt=""></a>
+                            </div>
 
+                            <!-- Login Search Area -->
+                            <div class="login-search-area d-flex align-items-center">
+                                <!-- Search Form -->
+                                <div class="search-form">
+                                    <form action="{% url 'search-result' %}" method="get">
+                                        {% csrf_token %}
+                                        <input type="search" name="search" class="form-control" placeholder="Search...">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar Area -->
+        <div class="newspaper-main-menu" id="stickyMenu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img src="{% static 'blog/img/core-img/edunes_logo.png' %}" alt=""></a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav_active">
+                                    <li class="active"><a href="{% url 'blog-home' %}">Home</a></li>
+                                    <li><a href="{% url 'blog-politics' %}">Politics</a></li>
+                                    <li><a href="{% url 'blog-business' %}">Business</a></li>
+                                    <li><a href="{% url 'blog-technology' %}">Technology</a></li>
+                                    <li><a href="{% url 'blog-entertainment' %}">Entertainment</a></li>
+                                    <li><a href="{% url 'blog-fashion' %}">Fashion</a></li>
+                                    <li><a href="{% url 'blog-arts-culture' %}">Arts/Culture</a></li>
+                                    <li><a href="{% url 'blog-health' %}">Health</a></li>
+                                    <li><a href="{% url 'blog-sport' %}">Sports</a></li>
+                                    <li><a href="#">Society</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="{% url 'university-of-ghana' %}">University of Ghana</a></li>
+                                                <li><a href="#">University of Cape Coast</a></li>
+                                                <li><a href="#">KNUST</a></li>
+                                                <li><a href="#">University of Education</a></li>
+                                                <li><a href="#">University for Development Studies</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="#">University of Mines and Technology</a></li>
+                                                <li><a href="#">University of Professional studies</a></li>
+                                                <li><a href="#">University of Health and Allied Science</a></li>
+                                                <li><a href="#">University of Energy and Natural Resources</a></li>
+                                                <li><a href="#">Ashesi University</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="#">Accra Technical University</a></li>
+                                                <li><a href="#">Cape Coast Technical University</a></li>
+                                                <li><a href="#">Kumasi Technical University</a></li>
+                                                <li><a href="#">Koforidua Technical University</a></li>
+                                                <li><a href="#">Takoradi Technical University</a></li>
+                                            </ul>
+                                            <div class="single-mega cn-col-4">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="{% url 'blog-contact' %}">Contact</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+{% endblock navbar %}
 {% block content %}
-
-
     <!-- ##### Featured Post Area Start ##### -->
     <div class="featured-post-area">
         <div class="container">
@@ -20,17 +126,17 @@
                               </ul>
                               <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                  <img src="{% static 'blog/img/bg-img/browser-coffee-cup-6335.jpg' %}" alt="Los Angeles" width="1100" height="500">
+                                  <img src="{% static 'blog/img/bg-img/browser-coffee-cup-6335.jpg' %}" alt="" width="1100" height="500" style="height: auto; max-height: 39.5vh;">
                                   <div class="carousel-caption">
                                     <p class="mb-0" style="color: black; font-size: 30px; font-family: 'Times New Roman', serif;">Edunes Publication</p>
-                                    <p class=" mt-0" style="font-size: large; color: black;;">Providing reliable information to academia in Ghana</p>
+                                    <p class=" mt-0" style=" color: white;font-weight: bolder;background: rgba(0, 0, 0, 0.25);">Providing reliable information to academia in Ghana</p>
                                   </div>
                                 </div>
                                  {% for caro in news %}
                                 <div class="carousel-item">
-                                  <img src="{{ caro.picture.url }}" alt="Chicago" width="1100" height="500">
+                                  <img src="{{ caro.picture.url }}" alt="" width="1100" height="500" style="height: auto; max-height: 39.5vh;">
                                   <div class="carousel-caption">
-                                      <a href="{% url 'blog-news-detail' slug=caro.slug %}"><p class="mb-0" style="color: black; font-size: larger">{{ caro.title }}</p></a>
+                                      <a href="{% url 'blog-news-detail' slug=caro.slug %}"><p class="mb-0" style="color: white;font-weight: bolder;background: rgba(0, 0, 0, 0.25);">{{ caro.title }}</p></a>
                                       <span class="badge badge-pill badge-danger">{{caro.category.title}}</span>
                                   </div>
                                 </div>
@@ -386,57 +492,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'blog/img/bg-img/adult-airport-backpack-838413.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'blog/img/bg-img/adult-airport-backpack-838413.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'blog/img/bg-img/adult-airport-backpack-838413.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -444,36 +499,6 @@
                 <div class="col-12 col-md-5 col-lg-3">
                     <div class="section-heading">
                         <h6>Society</h6>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'blog/img/bg-img/adult-architecture-background-941572.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'blog/img/bg-img/adult-architecture-background-941572.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Single Post -->

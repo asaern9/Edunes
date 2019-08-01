@@ -1,6 +1,116 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 
+{% block navbar %}
+     <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+         <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="{% url 'blog-home' %}"><img src="{% static 'blog/img/core-img/edunes_logo.png' %}" alt=""></a>
+                            </div>
+
+                            <!-- Login Search Area -->
+                            <div class="login-search-area d-flex align-items-center">
+                                <!-- Search Form -->
+                                <div class="search-form">
+                                    <form action="{% url 'search-result' %}" method="get">
+                                        {% csrf_token %}
+                                        <input type="search" name="search" class="form-control" placeholder="Search...">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar Area -->
+        <div class="newspaper-main-menu" id="stickyMenu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="newspaperNav">
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html"><img src="{% static 'blog/img/core-img/edunes_logo.png' %}" alt=""></a>
+                        </div>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav_active">
+                                    <li><a href="{% url 'blog-home' %}">Home</a></li>
+                                    <li><a href="{% url 'blog-politics' %}">Politics</a></li>
+                                    <li><a href="{% url 'blog-business' %}">Business</a></li>
+                                    <li><a href="{% url 'blog-technology' %}">Technology</a></li>
+                                    <li><a href="{% url 'blog-entertainment' %}">Entertainment</a></li>
+                                    <li><a href="{% url 'blog-fashion' %}">Fashion</a></li>
+                                    <li><a href="{% url 'blog-arts-culture' %}">Arts/Culture</a></li>
+                                    <li><a href="{% url 'blog-health' %}">Health</a></li>
+                                    <li class="active"><a href="{% url 'blog-sport' %}">Sports</a></li>
+                                    <li><a href="#">Society</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="{% url 'university-of-ghana' %}">University of Ghana</a></li>
+                                                <li><a href="#">University of Cape Coast</a></li>
+                                                <li><a href="#">KNUST</a></li>
+                                                <li><a href="#">University of Education</a></li>
+                                                <li><a href="#">University for Development Studies</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="#">University of Mines and Technology</a></li>
+                                                <li><a href="#">University of Professional studies</a></li>
+                                                <li><a href="#">University of Health and Allied Science</a></li>
+                                                <li><a href="#">University of Energy and Natural Resources</a></li>
+                                                <li><a href="#">Ashesi University</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li class="title">Institutions</li>
+                                                <li><a href="#">Accra Technical University</a></li>
+                                                <li><a href="#">Cape Coast Technical University</a></li>
+                                                <li><a href="#">Kumasi Technical University</a></li>
+                                                <li><a href="#">Koforidua Technical University</a></li>
+                                                <li><a href="#">Takoradi Technical University</a></li>
+                                            </ul>
+                                            <div class="single-mega cn-col-4">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="{% url 'blog-contact' %}">Contact</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+{% endblock navbar %}
+
 {% block content %}
     <!-- ##### Blog Area Start ##### -->
     <div class="blog-area section-padding-0-80">

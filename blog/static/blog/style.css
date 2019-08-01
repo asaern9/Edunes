@@ -438,11 +438,11 @@ textarea:focus {
         color: #828282;
         font-weight: 500; }
         .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li > a:hover, .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li > a:focus {
-          color: #1c1c1c; }
+          color: #ee002d; }
       .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li.active > a {
         position: relative;
         z-index: 1;
-        color: #1c1c1c; }
+        color: #ee002d; }
         .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li.active > a::before {
           background-color: #f7f7f7;
           width: 100%;
@@ -1235,3 +1235,5 @@ textarea:focus {
      margin: 0 auto;
      width: 100px;
 }
+
+
