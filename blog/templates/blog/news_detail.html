@@ -150,21 +150,142 @@
                         </div>
                         <div class="row">
                             <!-- Single Post -->
-                         {% comment %}   {% for relate in related_post %}
-                            <div class="col-12 col-md-6">
-                                <div class="single-blog-post style-3">
-                                    <div class="post-thumb">
-                                        <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
-                                    </div>
-                                    <div class="post-data">
-                                        <a class="post-catagory">{{ relate.category.title }}</a>
-                                        <a href="{{ object.get_absolute_url }}" class="post-title">
-                                            <h6>{{ relate.content|truncatewords:10 }}</h6>
-                                        </a>
+                        {% if 'Politics' == object.category.title  %}
+                             {% for relate in politics_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% endfor %} {% endcomment %}
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Sport' == object.category.title  %}
+                             {% for relate in sport_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Arts/Culture' == object.category.title  %}
+                             {% for relate in arts_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Business' == object.category.title  %}
+                             {% for relate in business_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Entertainment' == object.category.title  %}
+                             {% for relate in entertainment_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Fashion' == object.category.title  %}
+                             {% for relate in fashion_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Health' == object.category.title  %}
+                             {% for relate in health_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
+                        {% if 'Tech' == object.category.title  %}
+                             {% for relate in tech_related %}
+                                <div class="col-12 col-md-6">
+                                    <div class="single-blog-post style-3">
+                                        <div class="post-thumb">
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}"><img src="{{ relate.picture.url }}" alt=""></a>
+                                        </div>
+                                        <div class="post-data">
+                                            <a class="post-catagory">{{ relate.category.title }}</a>
+                                            <a href="{% url 'blog-news-detail' slug=relate.slug %}" class="post-title">
+                                                <h6>{{ relate.content|truncatewords:10 }}</h6>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}
+                        {% endif %}
                         </div>
                     </div>
                 </div>
@@ -173,39 +294,18 @@
                     <div class="blog-sidebar-area">
                         <!-- Popular News Widget -->
                         <div class="popular-news-widget mb-50">
-                            <h3>4 Most Popular News</h3>
+                            <h3 style="text-decoration: underline">Latest News</h3>
 
                             <!-- Single Popular Blog -->
+                            {% for latest in latest_news %}
                             <div class="single-popular-post">
-                                <a href="#">
-                                    <h6><span>1.</span> Amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales.</h6>
+                                <a href="{% url 'blog-news-detail' slug=latest.slug %}">
+                                    <h6><span>*</span>{{ latest.title }}</h6>
                                 </a>
-                                <p>April 14, 2018</p>
+                                <p>{{ latest.date|date:'F j, Y' }}</p>
                             </div>
+                            {% endfor %}
 
-                            <!-- Single Popular Blog -->
-                            <div class="single-popular-post">
-                                <a href="#">
-                                    <h6><span>2.</span> Consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer.</h6>
-                                </a>
-                                <p>April 14, 2018</p>
-                            </div>
-
-                            <!-- Single Popular Blog -->
-                            <div class="single-popular-post">
-                                <a href="#">
-                                    <h6><span>3.</span> Adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo.</h6>
-                                </a>
-                                <p>April 14, 2018</p>
-                            </div>
-
-                            <!-- Single Popular Blog -->
-                            <div class="single-popular-post">
-                                <a href="#">
-                                    <h6><span>4.</span> Eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                                </a>
-                                <p>April 14, 2018</p>
-                            </div>
                         </div>
                     </div>
                 </div>

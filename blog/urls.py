@@ -18,6 +18,8 @@ urlpatterns = [
     path('sports/', views.sport, name='blog-sport'),
     path('technology/', views.tech, name='blog-technology'),
     path('contact/', views.contact, name='blog-contact'),
+    path('about/', views.about, name='blog-about'),
+    path('publish-news/', views.publish, name='blog-publish'),
 
     # Universities url path
     path('institutions/university-of-ghaan/', views.university_of_ghana, name='university-of-ghana'),

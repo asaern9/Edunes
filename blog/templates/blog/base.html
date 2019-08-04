@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <p>&copy;<script>document.write(new Date().getFullYear());</script> Edunes Publication</p>
+                        <p>&copy;<script>document.write(new Date().getFullYear());</script> Edunes Publication <a class="pl-2" href="{% url 'blog-about' %}" style="text-decoration: underline">About us</a><a class="pl-2" href="{% url 'blog-publish' %}" style="text-decoration: underline">Publish news</a></p>
                     </div>
                     <div class="col-lg-4 col-md-4 socialbtn">
                         <a href="https://www.facebook.com/Edunes-Publication-105780360769273" target="_blank" class="fa fa-facebook"></a>
@@ -62,6 +62,14 @@
     <script src="{% static 'blog/js/plugins/plugins.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'blog/js/active.js' %}"></script>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 </body>
 
 </html>

@@ -271,16 +271,17 @@
                         {% endfor %}
                         <!-- Popular News Widget -->
                         <div class="popular-news-widget mb-50">
-                            <h3>4 Most Popular News</h3>
+                            <h3> Most Popular News</h3>
 
                             <!-- Single Popular Blog -->
+                            {% for popublar in popular %}
                             <div class="single-popular-post">
                                 <a href="#">
-                                    <h6><span>1.</span> Amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales.</h6>
+                                    <h6><span>1.</span>{{ popular. }}</h6>
                                 </a>
                                 <p>April 14, 2018</p>
                             </div>
-
+                            {% endfor %}
                             <!-- Single Popular Blog -->
                             <div class="single-popular-post">
                                 <a href="#">

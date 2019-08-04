@@ -22,6 +22,7 @@ class News(models.Model):
     slug = models.SlugField(null=True)
     picture = models.ImageField(upload_to='News/')
     audio = models.FileField(upload_to='Audio/', null=True, blank=True)
+    most_popular = models.BooleanField(null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('blog-news-detail', kwargs={'slug': self.slug})
@@ -44,6 +45,20 @@ class FeaturedVideo(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     video_link = models.URLField(max_length=500)
     video_picture = models.ImageField(upload_to='Videos_Pic/')
+
+    def __str__(self):
+        return self.title
+
+
+class UnapprovedNews(models.Model):
+    title = models.CharField(max_length=500)
+    content = models.TextField()
+    picture = models.ImageField(upload_to='Unapproved/', null=True)
+    reporter = models.CharField(max_length=100)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Arts/Culture')
+    phone = models.CharField(max_length=10)
+    email = models.EmailField(null=True, blank=True)
+    video = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.title

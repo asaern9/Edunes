@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import News, FeaturedVideo
-from .forms import ContactForm
+from .forms import ContactForm, PublishForm
 # Create your views here.
 
 
@@ -33,7 +33,15 @@ class NewsDetail(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(NewsDetail, self).get_context_data(*args, **kwargs)
-        context['related_post'] = News.objects.filter(category='politics').order_by('-id')[:4]
+        context['politics_related'] = News.objects.filter(category='politics').order_by('-id')[:4]
+        context['arts_related'] = News.objects.filter(category='arts').order_by('-id')[:4]
+        context['tech_related'] = News.objects.filter(category='tech').order_by('-id')[:4]
+        context['fashion_related'] = News.objects.filter(category='fashion').order_by('-id')[:4]
+        context['entertainment_related'] = News.objects.filter(category='entertainment').order_by('-id')[:4]
+        context['health_related'] = News.objects.filter(category='health').order_by('-id')[:4]
+        context['sport_related'] = News.objects.filter(category='sport').order_by('-id')[:4]
+        context['business_related'] = News.objects.filter(category='business').order_by('-id')[:4]
+        context['latest_news'] = News.objects.all().order_by('-id')[:4]
         return context
 
 
@@ -161,7 +169,7 @@ def politics(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4] # dont forget niga
     page = request.GET.get('page', 1)
     paginator = Paginator(poli, 10)
     try:
@@ -171,7 +179,7 @@ def politics(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'entertainment': enter, 'fashion': fash, 'health': heal,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/politics.html', context)
 
 
@@ -232,6 +240,10 @@ def contact(request):
     return render(request, 'blog/contact.html', {'form': form})
 
 
+def about(request):
+    return render(request, 'blog/about.html')
+
+
 class SearchResultsView(ListView):
     model = News
     template_name = 'blog/search.html'
@@ -243,7 +255,18 @@ class SearchResultsView(ListView):
             return object_list
 
 
-# Unversities views
+def publish(request):
+    if request.method == 'POST':
+        form = PublishForm(request.POST, request.FILES)
+        if form.is_valid():
+            form_save = form.save()
+            return redirect('blog-publish')
+    else:
+        form = PublishForm()
+    return render(request, 'blog/publish.html', {'form': form})
+
+
+# Universities views
 
 def university_of_ghana(request):
     return render(request, 'blog/university_of_ghana.html')
