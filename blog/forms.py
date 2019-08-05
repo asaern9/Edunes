@@ -7,10 +7,10 @@ class ContactForm(forms.ModelForm):
         model = Message
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control px-3 py-3', 'placeholder': 'Your Name'}),
-            'email': forms.TextInput(attrs={'class': 'form-control px-3 py-3', 'placeholder': 'Your Email'}),
-            'subject': forms.TextInput(attrs={'class': 'form-control px-3 py-3', 'placeholder': 'Subject'}),
-            'message': forms.TextInput(attrs={'class': 'form-control px-3 py-3', 'placeholder': 'Message'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
+            'subject': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Subject'}),
+            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': '5', 'placeholder': 'Message'}),
         }
 
 
@@ -25,7 +25,7 @@ class PublishForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Content', 'rows': '8'}),
             'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
             'video': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Video url (optional)'}),
-            'picture': forms.TextInput(attrs={'class': 'custom-file-input', 'id': 'customFile', 'type': 'file'}),
             'category': forms.Select(attrs={'class': 'form-control custom-select'}),
+
 
         }

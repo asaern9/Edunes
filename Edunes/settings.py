@@ -125,3 +125,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'info.edunes@gmail.com'
+EMAIL_HOST_PASSWORD = '$Ofbee$98'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

@@ -3,7 +3,8 @@ from django.views.generic import DetailView, ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import News, FeaturedVideo
 from .forms import ContactForm, PublishForm
-# Create your views here.
+from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -54,7 +55,7 @@ def arts_culture(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(arts, 10)
     try:
@@ -64,7 +65,7 @@ def arts_culture(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'business': bus, 'entertainment': enter, 'fashion': fash, 'health': heal,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/arts_culture.html', context)
 
 
@@ -77,7 +78,7 @@ def business(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(bus, 10)
     try:
@@ -87,7 +88,7 @@ def business(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'entertainment': enter, 'fashion': fash, 'health': heal,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/business.html', context)
 
 
@@ -100,7 +101,7 @@ def entertainment(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(enter, 10)
     try:
@@ -110,7 +111,7 @@ def entertainment(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'fashion': fash, 'health': heal,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/entertainment.html', context)
 
 
@@ -123,7 +124,7 @@ def fashion(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(fash, 10)
     try:
@@ -133,7 +134,7 @@ def fashion(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'entertainment': enter, 'health': heal,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/fashion.html', context)
 
 
@@ -146,7 +147,7 @@ def health(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(heal, 10)
     try:
@@ -156,7 +157,7 @@ def health(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'entertainment': enter, 'fashion': fash,
-               'sports': sports, 'technology': technology, 'news': news}
+               'sports': sports, 'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/health.html', context)
 
 
@@ -169,7 +170,7 @@ def politics(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4] # dont forget niga
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(poli, 10)
     try:
@@ -192,7 +193,7 @@ def sport(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')
     technology = News.objects.all().filter(category='tech').order_by('-id')[:1]
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(sports, 10)
     try:
@@ -202,7 +203,7 @@ def sport(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'entertainment': enter, 'fashion': fash, 'health': heal,
-               'technology': technology, 'news': news}
+               'technology': technology, 'news': news, 'popular': popular}
     return render(request, 'blog/sport.html', context)
 
 
@@ -215,7 +216,7 @@ def tech(request):
     poli = News.objects.all().filter(category='politics').order_by('-id')[:1]
     sports = News.objects.all().filter(category='sport').order_by('-id')[:1]
     technology = News.objects.all().filter(category='tech').order_by('-id')
-
+    popular = News.objects.all().filter(most_popular=True).order_by('-id')[:4]
     page = request.GET.get('page', 1)
     paginator = Paginator(technology, 10)
     try:
@@ -225,7 +226,7 @@ def tech(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     context = {'politics': poli, 'arts': arts, 'business': bus, 'entertainment': enter, 'fashion': fash, 'health': heal,
-               'sports': sports, 'news': news}
+               'sports': sports, 'news': news, 'popular': popular}
     return render(request, 'blog/tech.html', context)
 
 
@@ -234,6 +235,14 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form_save = form.save()
+            messages.success(request, 'Message submitted!')
+            send_mail(
+                'Contact Message received',
+                'Checkout the message on the admin panel Now!',
+                'info.edunes@gmail.com',
+                ['asaern9@gmail.com'],
+                fail_silently=False,
+            )
             return redirect('blog-contact')
     else:
         form = ContactForm()
@@ -260,6 +269,14 @@ def publish(request):
         form = PublishForm(request.POST, request.FILES)
         if form.is_valid():
             form_save = form.save()
+            messages.success(request, 'News submitted for approval')
+            send_mail(
+                'News publish request received',
+                'Checkout the news request on the admin panel Now!',
+                'info.edunes@gmail.com',
+                ['asaern9@gmail.com'],
+                fail_silently=False,
+            )
             return redirect('blog-publish')
     else:
         form = PublishForm()

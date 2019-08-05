@@ -31,7 +31,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 h1,
 h2,
@@ -1045,6 +1046,7 @@ textarea:focus {
 .footer-area {
   position: relative;
   z-index: 1;
+
   width: 100%;
   background-color: #262626 }
   .footer-area .footer-widget-area {
@@ -1236,5 +1238,14 @@ textarea:focus {
      width: 100px;
 }
 
+.footer-bottom {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
 
-
+.fixed-div {
+   min-height: 60vh;
+  position: relative;
+}

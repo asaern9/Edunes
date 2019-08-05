@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="active"><a href="{% url 'blog-contact' %}">Contact</a></li>
+                                    <li><a href="{% url 'blog-contact' %}">Contact</a></li>
                                 </ul>
 
                             </div>
@@ -110,8 +110,11 @@
     <!-- ##### Header Area End ##### -->
 {% endblock navbar %}
 {% block content %}
-    <div class="container-fluid">
-        <p class="jumbotron"> Under Construction</p>
+    <div class="container fixed-div">
+        <div class="col-lg-6 mt-3">
+            <p style="font-size: 20px">
+                "Our <span style="font-weight: bold">aim</span> is to spread <span style="font-weight: bold">news</span> across all levels of <span style="font-weight: bold">education</span> around the <span style="font-weight: bold">country</span>, Love to write and share? Publish your article <a class="text-danger" style="font-weight: bold; text-decoration: underline; font-size: 20px" href="{% url 'blog-publish' %}">now!</a>
+            </p>
+        </div>
     </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 {% endblock %}

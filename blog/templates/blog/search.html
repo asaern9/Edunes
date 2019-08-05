@@ -112,7 +112,7 @@
 {% endblock navbar %}
 
 {% block content %}
-    <div class="container">
+    <div class="container fixed-div">
         {% if object_list %}
             {% for object in object_list %}
             <div class="row mt-1">
@@ -126,12 +126,10 @@
                 </div>
             </div>
             {% endfor %}
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             {% else %}
             <div class="jumbotron">
                 <p class="text-center" style="font-size: larger">No results found</p>
             </div>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         {% endif %}
     </div>
 {% endblock content %}
